@@ -1,0 +1,2 @@
+# scgit
+supercollider git
