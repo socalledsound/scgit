@@ -35,7 +35,7 @@ SynthDef.new(\sineRes, {
 )
 (
 
-	p = Pbind(
+	~lowStart = Pbind(
 	\instrument, \sine,
 	\dur, Pwhite(0.05, 0.5, inf),
 	\freq, Pexprand(20, 200, 100),
@@ -45,7 +45,7 @@ SynthDef.new(\sineRes, {
 	\pan, Pwhite(-0.8, 0.8, inf),
 );
 
- q = Pbind(
+   ~hiTin = Pbind(
 	\instrument, \sineRes,
 	\dur, Pwhite(0.05, 0.5, inf),
 	\freq, Pexprand(6000, 12000, 20),
@@ -55,20 +55,51 @@ SynthDef.new(\sineRes, {
 	\pan, Pwhite(-0.8, 0.8, inf),
 );
 
+~medTones = Pbind(
+	\instrument, \sineRes,
+	\dur, Pwhite(0.05, 0.5, inf),
+	\freq, Pexprand(600, 6600, 20),
+	\atk, Pwhite(10.0, 20.0, inf),
+	\rel, Pwhite(10.0, 20.0, inf),
+	\amp, Pexprand(0.001, 0.01, inf),
+	\pan, Pwhite(-0.8, 0.8, inf),
+);
+
+~narrowMed = Pbind(
+	\instrument, \sineRes,
+	\dur, Pwhite(0.05, 0.5, inf),
+	\freq, Pexprand(600, 800, 20),
+	\atk, Pwhite(10.0, 20.0, inf),
+	\rel, Pwhite(10.0, 20.0, inf),
+	\amp, Pexprand(0.001, 0.01, inf),
+	\pan, Pwhite(-0.8, 0.8, inf),
+);
+
+
 
 Routine{
 
 
 	fork{
 		75.wait;
+		fork{
+			30.wait;
+			4.do{
+			~narrowMed.play;
+			~medTones.play;
+				rrand(45,60).wait;
+
+			};
+		};
 		6.do{
-			q.play;
+			~hiTin.play;
 			30.wait;
 
 		};
 	};
+
 	3.do{
-		p.play;
+		~lowStart.play;
 		postln("hi");
 
 		50.wait;

@@ -13,7 +13,10 @@ SynthDef(\bpfSaw, {
 		{LFNoise1.kr(0.4).exprange(rqmin, rqmax)}!2
 	);
 	sig = BLowShelf.ar(sig, lsf, 0.5, ldb);
-	sig = FreeVerb.ar(sig, 0.9, 0.9,0.01);
+	//sig = Decay2.ar(sig, 0.5,0.6);
+
+	sig = DelayL.ar(sig, 1.0, 0.1);
+	sig = FreeVerb.ar(sig, 0.1, 0.99, 0.001);
 	sig = Pan2.ar(sig, pan);
 	sig = sig * env *amp;
 	Out.ar(out, sig);
@@ -32,7 +35,7 @@ Pbind(
 	\rel, Pexprand(0.1,2.0),
 	\cfmin, Prand((Scale.major.degrees+64).midicps*2, inf) * Prand([0.5, 1.0, 4], inf),
 	\cfmax, Pkey(\cfmin),
-	\amp, 0.2,
+	\amp, 0.5,
 	\rqmin, 0.002,
 	\rqmax, 0.005,
 	\out, 0
@@ -47,8 +50,8 @@ Pbind(
 	\atk, Pexprand(0.1,4.0),
 	\rel, Pexprand(0.1,4.0),
 	\cfmin, Prand((Scale.major.degrees+64).midicps, inf),
-	\cfmax, Pkey(\cfmin),
-	\amp, 0.2,
+	\cfmax, Pkey(\cfmin) * Pwhite(1.0001,1.002, inf),
+	\amp, 0.5,
 	\rqmin, 0.002,
 	\rqmax, 0.005,
 	\out, 0
