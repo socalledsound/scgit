@@ -35,8 +35,9 @@ SynthDef("song2ma", {arg freq, cov, den;
 
 -----
 
-// ( // ma.bass
-var freq, cov, den;
+
+	// ma.bass
+(var freq, cov, den;
 freq = ~root;
 cov = 25;
 den = 45;

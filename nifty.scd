@@ -1,0 +1,1 @@
+{HPF.ar(Mix(Pulse.ar(500+(500*(Array.fill(10,{0.3.rand}))),0.5*(Array.fill(10,{0.3.rand})),0.8)), MouseX.kr(300,10000))}.play
