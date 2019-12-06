@@ -16,7 +16,7 @@ SynthDef(\bpfSaw, {
 	//sig = Decay2.ar(sig, 0.5,0.6);
 
 	sig = DelayL.ar(sig, 1.0, 0.1);
-	sig = FreeVerb.ar(sig, 0.1, 0.99, 0.001);
+	sig = FreeVerb.ar(sig, 0.3, 0.99, 0.001);
 	sig = Pan2.ar(sig, pan);
 	sig = sig * env *amp;
 	Out.ar(out, sig);
@@ -35,9 +35,10 @@ Pbind(
 	\rel, Pexprand(0.1,2.0),
 	\cfmin, Prand((Scale.major.degrees+64).midicps*2, inf) * Prand([0.5, 1.0, 4], inf),
 	\cfmax, Pkey(\cfmin),
-	\amp, 0.5,
+	\amp, Pexprand(0.5,1.0),
 	\rqmin, 0.002,
 	\rqmax, 0.005,
+	\pan, Pexprand(-1.0,1.0),
 	\out, 0
 
 ).play;
@@ -51,9 +52,10 @@ Pbind(
 	\rel, Pexprand(0.1,4.0),
 	\cfmin, Prand((Scale.major.degrees+64).midicps, inf),
 	\cfmax, Pkey(\cfmin) * Pwhite(1.0001,1.002, inf),
-	\amp, 0.5,
+	\amp, Pexprand(0.5,1.0),
 	\rqmin, 0.002,
 	\rqmax, 0.005,
+    \pan, Pexprand(-1.0,1.0),
 	\out, 0
 
 ).play;
