@@ -49,7 +49,7 @@ a = Pbind(
 	\freq, Pexprand(600, 6600, 20),
 	\atk, Pwhite(10.0, 20.0, inf),
 	\rel, Pwhite(10.0, 20.0, inf),
-	\amp, Pexprand(0.01, 0.03, inf),
+	\amp, Pexprand(0.001, 0.01, inf),
 	\pan, Pwhite(-0.8, 0.8, inf),
 ).play;
 )
@@ -62,7 +62,7 @@ a = Pbind(
 	\freq, Pexprand(600, 800, 20),
 	\atk, Pwhite(10.0, 20.0, inf),
 	\rel, Pwhite(10.0, 20.0, inf),
-	\amp, Pexprand(0.01, 0.02, inf),
+	\amp, Pexprand(0.001, 0.01, inf),
 	\pan, Pwhite(-0.8, 0.8, inf),
 ).play;
 )
@@ -76,7 +76,7 @@ a = Pbind(
 	\freq, Pexprand(6000, 12000, 20),
 	\atk, Pwhite(10.0, 20.0, inf),
 	\rel, Pwhite(10.0, 20.0, inf),
-	\amp, Pexprand(0.01, 0.1, inf),
+	\amp, Pexprand(0.001, 0.01, inf),
 	\pan, Pwhite(-0.8, 0.8, inf),
 ).play;
 )
