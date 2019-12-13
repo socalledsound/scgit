@@ -44,7 +44,7 @@ rrand(4,10).do{
 			\buf, b[\op2018stems][[4,5,6,7,8].choose],
 			\atk, exprand(2,3),
 			\sus, 1,
-			\rel, exprand(2,3),
+			\rel, exprand(20,30),
 			\bpfmix, 1,
 			\freq, (Scale.lydian.degrees+69).choose.midicps * [0.25,0.5].choose,
 			\rq, exprand(0.001, 0.008),

@@ -34,6 +34,7 @@ SynthDef(\reverb, {
 
 
 
+
 //b.add(\ ->
 (
 
@@ -70,9 +71,9 @@ rrand(4,10).do{
 			\bpfmix, 1,
 			\freq, (Scale.lydian.degrees+69).choose.midicps * [0.25,0.5].choose,
 			\rq, exprand(0.001, 0.008),
-			\rate, exprand(0.6, 0.2),
+			\rate, exprand(0.6, 1.2),
 			\pan, rrand(-0.5,0.5),
-			\amp, exprand(4,6),
+			\amp, exprand(2,4),
 		]
 	)
 };
@@ -83,3 +84,5 @@ rrand(4,10).do{
 ~reverbBus = Bus.audio(s, 2);
 
 ~reverbSynth = Synth(\reverb, [\in, ~reverbBus]);
+~reverbSynth.set(\revTime, 20.0);
+~reverbSynth.set(\mix, 0.9);

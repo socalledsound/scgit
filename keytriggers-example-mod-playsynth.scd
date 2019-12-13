@@ -1,14 +1,25 @@
+s.meter
+
+
+
 (
 SynthDef(\sinTest, {
-	arg freq;
+	arg freq = 400;
 	var sig;
 	sig = SinOsc.ar(freq, 0, 1);
 	Out.ar(0, sig);
 }).add;
 )
 
+
+
+
+
+
 (
-a=Synth(\sinTest);
+
+
+
 
 
 w = Window.new("play", Rect(0, 0, 70, 70));
@@ -16,11 +27,11 @@ w = Window.new("play", Rect(0, 0, 70, 70));
 w.view.keyDownAction_({ arg view, char;
 
     if(char == $a, {
-        a.play;
+ a=Synth(\sinTest);
     });
 
-    if(char == $z, {
-        a.stop;
+    if(char == $A, {
+        a.free;
     });
 
 });

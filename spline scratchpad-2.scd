@@ -25,18 +25,20 @@ SynthDef(\bpfSinDeTune2, {
 (
 	10..20.do{
 	var freq = [50,62,75].choose;
+	var maxAmp = 0.1, maxDetune = 0.01, freqScaler = 4;
+
 		Synth(
 			\bpfSinDeTune2,
 			[
-				\freq, freq*8,
-				\amp, 0.01,
-				\atk, exprand(1.0, 2.0),
+				\freq, freq*8/freqScaler,
+			    \amp, exprand(0.01,maxAmp),
+				\atk, exprand(10.0, 20.0),
 				\rel, exprand(10.0, 20.0),
 				\cfmin, freq*2,
 			    \cfmax, freq*10,
 				\rqmin, 0.01,
 		        \rqmax, 0.1,
-				\detune, exprand(0.01, 0.1),
+				\detune, exprand(0.01, 1.0),
 			    \pan, rrand(-1.0, 1.0);
 			]
 		);
@@ -52,7 +54,7 @@ SynthDef(\bpfSinDeTune2, {
 			[
 				\freq, freq*8,
 				\amp, 0.05,
-				\atk, exprand(1.0, 2.0),
+				\atk, exprand(10.0, 20.0),
 				\rel, exprand(10.0, 20.0),
 				\cfmin, freq*2,
 			    \cfmax, freq*10,

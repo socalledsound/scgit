@@ -10,12 +10,9 @@ SynthDef(\bpfSin, {
 
 }).add;
 
-)
 
-
-(
 SynthDef(\bpfSinDeTune, {
-	arg freq=500, atk=3, sus=0, rel=3, c1=1, c2=(-1), cf=1500, rq=0.2, amp=1, out = 0, detune = 0.2, cfmin=1800, cfmax=2000, rqmin=0.01, rqmax=0.2, pan=0;
+	arg freq=500, atk=3, sus=0, rel=3, c1=1, c2=(-1), cf=1500, rq=0.2, amp=1, out = ~reverbBus, detune = 0.2, cfmin=1800, cfmax=2000, rqmin=0.01, rqmax=0.2, pan=0;
 	var sig, env;
 	env = EnvGen.kr(Env([0,1,1,0],[atk, sus, rel],[c1, 0, c2]), doneAction: 2);
 	sig  = SinOsc.ar(freq * LFNoise1.kr(0.5, detune).midiratio);
@@ -29,10 +26,8 @@ SynthDef(\bpfSinDeTune, {
 	Out.ar(out, sig);
 
 }).add;
-)
 
 
-(
 SynthDef(\bpfSinDeTune2, {
 	arg freq=500, atk=3, sus=0, rel=3, c1=1, c2=(-1), cf=1500, rq=0.2, amp=1, out = 0, detune = 0.2, cfmin=1800, cfmax=2000, rqmin=0.01, rqmax=0.2, pan=0;
 	var sig, env;
@@ -48,11 +43,7 @@ SynthDef(\bpfSinDeTune2, {
 	Out.ar(out, sig);
 
 }).add;
-)
 
-
-
-(
 SynthDef(\bpfSinDeTune3, {
 	arg freq=500, atk=3, sus=0, rel=3, c1=1, c2=(-1), cf=1500, rq=0.2, amp=1, out = 0, detune = 0.2, cfmin=1800, cfmax=2000, cfhzmin=0.1, cfhzmax=0.3, rqmin=0.01, rqmax=0.2, pan=0, lsf=200, ldb=0;
 	var sig, env;
@@ -183,19 +174,24 @@ SynthDef(\bpfSinDeTune3, {
 
 
 (
-	10..20.do{
+Routine.run({
 	var f = 50;
+	var i = 0;
+	rrand(10,20).do{
+
 	//var freq = [f, f*2, f*3].choose;
 	var freq = [f,f*1.25,f*1.5].choose;
 	//freq = [50,62,75].choose;
 	 //freq = [25,50,100].choose;
 	//freq = [32.5,65,130].choose;
 	//freq = [4
+
+	10.do(
 	  Synth(
 			\bpfSinDeTune,
 			[
-				\freq, freq*8/2,
-				\amp, 0.05,
+					\freq, freq*8*([2,4,8,16].choose),
+				\amp, 0.8,
 				\atk, exprand(10.0, 20.0),
 				\rel, exprand(10.0, 20.0),
 				\cfmin, freq*2,
@@ -204,12 +200,16 @@ SynthDef(\bpfSinDeTune3, {
 			    \cfhzmax, 1,
 				\rqmin, 0.01,
 		        \rqmax, 0.1,
-				\detune, exprand(0.01, 0.1),
+				\detune, exprand(0.01, 0.1)+i/10,
 			    \pan, rrand(-1.0, 1.0),
 			    \ldb, 0
 			]
 		);
-	};
+			i= i + 1;
+			(0.1).wait;
+		)
+		};
+})
 )
 
 
@@ -226,8 +226,8 @@ SynthDef(\bpfSinDeTune3, {
 	  Synth(
 			\bpfSinDeTune,
 			[
-				\freq, freq*8/2,
-				\amp, 0.05,
+				\freq, freq,
+				\amp, 0.005,
 				\atk, exprand(10.0, 20.0),
 				\rel, exprand(10.0, 20.0),
 				\cfmin, freq*2,
@@ -259,8 +259,8 @@ SynthDef(\bpfSinDeTune3, {
 	  Synth(
 			\bpfSinDeTune,
 			[
-				\freq, freq*8/4,
-				\amp, 0.2,
+				\freq, freq*4,
+				\amp, 0.05,
 				\atk, exprand(10.0, 20.0),
 				\rel, exprand(10.0, 20.0),
 				\cfmin, freq*2,
