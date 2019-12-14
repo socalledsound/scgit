@@ -160,25 +160,6 @@
 
 ~sevenLow = Routine({
 var i=1;
-	/*	Pbind(
-		\instrument, \bpfSawEQ,
-		\dur, Pexprand(0.5, 4.0, inf),
-		\freq, Pexprand(10, 15, 120),
-		\detune, 0.2,
-		\atk, Pexprand(0.1,2.0),
-		\rel, Pexprand(0.1,2.0),
-		\cfmin, Prand([50,62,75]*4, inf) * Prand([0.5, 1.0, 4], inf),
-		\cfmax, Pkey(\cfmin),
-		\amp, Pexprand(0.5,2.0),
-		\rqmin, 0.002,
-		\rqmax, 0.005,
-		\pan, Pexprand(-1.0,1.0),
-		\out, 0
-
-	).play;
-	*/
-
-
 	10.do{
 		Pbind(
 			\instrument, \bpfSawEQ,
@@ -193,7 +174,7 @@ var i=1;
 			//\cfmin, Pexprand(40000, 80000, inf),
 			\cfmin, Pseq([([25, 100, 200, 400].choose), 50],inf),
 			\cfmax, Pkey(\cfmin) * Pwhite(1.0001,1.5, inf),
-			\amp, Pexprand(0.5,0.8) * 5,
+			\amp, Pexprand(0.5,0.8) * 40,
 			\rqmin, 0.0002,
 			\rqmax, 0.0005,
 			\pan, Pexprand(-1.0,1.0),
@@ -239,7 +220,7 @@ var i=1;
 			\rel, Pexprand(0.1,4.0),
 			\cfmin, Prand([50,62,75]*16*(i), inf),
 			\cfmax, Pkey(\cfmin) * Pwhite(1.0001,1.002, inf),
-			\amp, Pexprand(0.5,0.8)*10,
+			\amp, Pexprand(0.5,0.8)*20,
 			\rqmin, 0.00002,
 			\rqmax, 0.00005,
 			\pan, Pexprand(-1.0,1.0),
@@ -284,7 +265,7 @@ Pbind(
 	\rel, Pexprand(0.1,4.0),
 			\cfmin, Prand([50,62,75]*(8+j)*(i+1), inf),
 	\cfmax, Pkey(\cfmin) * Pwhite(1.0001,1.002, inf),
-	\amp, Pexprand(0.5,0.8)*20,
+	\amp, Pexprand(0.5,0.8)*50,
 	\rqmin, 0.00002,
 	\rqmax, 0.00005,
     \pan, Pexprand(-1.0,1.0),

@@ -1,3 +1,10 @@
+s.boot;
+s.meter;
+s.options.memSize_(2.pow(20));
+s.quit
+
+
+
 (
 SynthDef.new(\overtonez, {
 	arg freq = 200, dev = 1.02;
@@ -56,6 +63,50 @@ Synth.new(\overtonez,[freq:150]);
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~sevenLow = Routine({
+var i=1;
+	6.do{
+		Pbind(
+			\instrument, \bpfSawEQharm,
+			//\dur, Pseq([Pexprand(0.1, 4.0, 1), Pexprand(4.0, 8.0, 5)], inf),
+			\dur, Pseq([1.0]++(0.5!12),inf),
+//			\freq, Pexprand(50*2,50, 120),
+			\freq,Pseq([[25,50,100,200,400, 800].choose!2,[25,62/2, 50, 62, 100, 62*2,200,62*4,400,62*8, 800,62*16].choose], inf),
+			\detune, 0.1,
+			\centerVal, Pexprand(8000,10000, inf),
+			\atk, Pexprand(3.0,1.0, inf),
+			\rel, Pexprand(3.0,1.0, inf),
+			//\cfmin, Pexprand(40000, 80000, inf),
+			\cfmin, Pseq([([25, 100, 200, 400].choose), 50],inf),
+			\cfmax, Pkey(\cfmin) * Pwhite(1.0001,1.5, inf),
+			\amp, Pexprand(0.5,0.8) * 40,
+			\rqmin, 0.0002,
+			\rqmax, 0.0005,
+			\pan, Pexprand(-1.0,1.0),
+			\out, 0
+
+		).play;
+		i=i*1.618;
+		i.postln;
+		(rrand(0.1,0.5)).wait;
+	}
+});
+
 
 )
 
