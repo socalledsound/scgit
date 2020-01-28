@@ -1,7 +1,7 @@
 (
 s.waitForBoot({
 
-var scale, width, height, n, space, w, cells, cellCreator, clearFunc;
+var scale, width, height, n, space, w, cells, cellC.reator, clearFunc;
 
 // sound source
 SynthDef(\blip, {|freq|

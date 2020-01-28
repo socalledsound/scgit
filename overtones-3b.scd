@@ -1,11 +1,9 @@
 s.boot;
 s.meter;
 s.options.memSize_(2.pow(20));
-s.quit
 
 
-
-(
+s.waitForBoot{(
 SynthDef.new(\overtonez, {
 	arg freq = 200, dev = 1.02, amp = 1.0, atk= 60.0, sus=240.0, rel = 60.0;
 	var temp, sum, env;
@@ -81,7 +79,7 @@ Synth.new(\overtonez,[freq:100, amp: 0.5, sus:0]);
 
 
 
-
+)};
 
 
 
